@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+</head>
+
+<body>
+
+    <img src="" alt="" id="slideimg" width="1000px" height="500px" style="margin-left:9%; margin-top: 2%;">
+
+    <script>
+        let array = ["https://getwallpapers.com/wallpaper/full/6/4/8/1408894-free-shinchan-wallpapers-1920x1080-xiaomi.jpg","https://wallpapers.com/images/high/mr-bean-animated-series-season-2-knlv5e5zq25bssmy.webp","https://w0.peakpx.com/wallpaper/267/109/HD-wallpaper-2014-shaun-sheep-cartoon.jpg"];
+        let currentindex = 0;
+
+        setInterval(() => {
+            currentindex = (currentindex + 1) % array.length
+            document.querySelector("#slideimg").src = array[currentindex]
+        }, 1500);
+    </script>
+
+</body>
+
+</html>
