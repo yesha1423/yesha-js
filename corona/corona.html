@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        #containor{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 20px;
+        }
+        .box{
+            border: 1px solid black;
+            box-shadow: 2px 2px 10px rgb(3, 13, 19);
+            padding: 0 30px;
+            border-radius: 10px;
+            background-color: rgb(70, 3, 3);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+        <div id="containor"></div>
+
+         <script>
+             function FecthApi() {
+                 fetch('https://api.rootnet.in/covid19-in/stats/latest')
+                 .then((res)=>res.json())
+                 .then((data)=>CardList(data.data.regional))
+                 .catch((err)=>console.log(err))
+     
+             }
+             FecthApi();
+     
+             function CardList(data) {
+                 let store = data.map((el)=>SigalCard(el.loc,el.confirmedCasesIndian,el.confirmedCasesForeign,el.discharged,el.deaths,el.totalConfirmed))
+                 document.getElementById("containor").innerHTML=store.join('');
+                 console.log(store)
+     
+             }
+     
+             function SigalCard(loc,confirmedCasesIndian,confirmedCasesForeign,discharged,deaths,totalConfirmed) {
+                    let card= `
+                   <div class="box">
+                        <h3>Location : ${loc}</h3>
+                        <h3>Confirm Class Indian: ${confirmedCasesIndian}</h3>
+                        <h3>Confirm Class Foreign : ${confirmedCasesForeign}</h3>
+                        <h3>Discharged : ${discharged}</h3>
+                        <h3>Deaths : ${deaths}</h3>
+                        <h3>Total Confirmed : ${totalConfirmed}</h3>
+                    </div>
+                 `;
+                 return card;
+             }
+         </script>
+     
+</body>
+</html>
